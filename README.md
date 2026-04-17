@@ -1,8 +1,8 @@
-# AI-Powered College Admission Intelligence Platform 🎓
+# AI-Powered College Admission Intelligence Platform 
 
 A comprehensive, AI-powered platform that helps JEE/NEET students make informed college admission decisions through intelligent recommendations, probability analysis, and personalized insights.
 
-## 🌟 Features
+## Features
 
 ### Core Features
 - **Smart Profile Input** - Multi-step form with progress tracking
@@ -18,7 +18,7 @@ A comprehensive, AI-powered platform that helps JEE/NEET students make informed 
 - **Probability Classification** - Safe/Moderate/Ambitious categorization
 - **Historical Trend Analysis** - Visual trends of past cutoffs
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Frontend**: React 18, Tailwind CSS, Chart.js, Axios
 - **Backend**: FastAPI, Python 3.11
@@ -26,7 +26,7 @@ A comprehensive, AI-powered platform that helps JEE/NEET students make informed 
 - **AI**: OpenAI GPT-5.2 (via Emergent Universal LLM Key)
 - **Data Analysis**: NumPy, Scikit-learn, Scipy
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 - Python 3.11+
@@ -86,7 +86,7 @@ cd frontend
 yarn start
 ```
 
-## 📊 Database
+## Database
 
 The platform includes data for:
 - **25+ colleges** (IITs, NITs, IIITs)
@@ -95,7 +95,7 @@ The platform includes data for:
 - **Placement statistics**
 - **Fee structures**
 
-## 🎯 Key Algorithms
+## Key Algorithms
 
 ### Admission Probability Calculation
 - Compares student rank with 3-year average historical cutoffs
@@ -115,7 +115,7 @@ The platform includes data for:
 - Branch-specific career roadmaps
 - Natural language query processing
 
-## 🎨 UI/UX Highlights
+## UI/UX Highlights
 
 - **Dark Theme** - Cyberpunk-inspired with cyan/green accents
 - **Smooth Animations** - Count-up effects, slide-ups, fade-ins
@@ -124,7 +124,7 @@ The platform includes data for:
 - **Responsive Design** - Mobile-friendly interface
 - **Interactive Charts** - Bar charts for probability visualization
 
-## 📱 User Flow
+## User Flow
 
 1. **Home Page** - Introduction and feature overview
 2. **Profile Building** - 4-step form with progress bar
@@ -154,7 +154,7 @@ The platform includes data for:
 - `GET /api/branch-roadmap/{branch}` - Get career roadmap
 - `GET /api/colleges/search` - Search and filter colleges
 
-## 🏆 Hackathon Winning Features
+## Hackathon Winning Features
 
 1. **Real-time AI Insights** - Every recommendation comes with personalized AI analysis
 2. **Predictive Analytics** - ML-based cutoff predictions
@@ -164,7 +164,7 @@ The platform includes data for:
 6. **Smart Classification** - Intelligent Safe/Moderate/Ambitious categorization
 7. **Career Guidance** - AI-generated branch-specific roadmaps
 
-## 📈 Future Enhancements
+## Future Enhancements
 
 - Real-time notifications for cutoff changes
 - Email alerts system
