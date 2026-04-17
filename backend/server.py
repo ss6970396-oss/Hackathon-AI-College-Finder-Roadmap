@@ -217,6 +217,12 @@ async def get_recommendations(request: RecommendationRequest):
             "branches": {"$in": profile.preferred_branches}
         }
         
+        # Filter by exam type: EAMCET shows only EAMCET colleges, JEE shows IIT/NIT/IIIT/GFTI
+        if profile.exam_type == "EAMCET":
+            query["type"] = "EAMCET"
+        elif profile.exam_type == "JEE":
+            query["type"] = {"$in": ["IIT", "NIT", "IIIT", "GFTI"]}
+        
         # Only apply budget filter if budget is set and reasonable
         if profile.max_budget and profile.max_budget > 0:
             query["total_fees"] = {"$lte": profile.max_budget}
