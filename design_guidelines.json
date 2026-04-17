@@ -1,0 +1,111 @@
+{
+  "global_design": {
+    "theme": "dark",
+    "archetype": "Archetype 4: Swiss & High-Contrast",
+    "emotional_tone": "Objective, authoritative, precise, and highly analytical.",
+    "core_philosophy": "Color is Function Only. The interface is primarily monochrome (deep obsidian to stark white). Color is injected exclusively to communicate data (Safe, Moderate, Ambitious, AI insights). Grid Borders surface strategy is used to expose the skeleton of the UI."
+  },
+  "typography": {
+    "heading_font": "Outfit",
+    "body_font": "IBM Plex Sans",
+    "rules": {
+      "h1": "text-4xl sm:text-5xl lg:text-6xl font-black tracking-tighter leading-none",
+      "h2": "text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight",
+      "h3": "text-xl sm:text-2xl font-semibold tracking-tight",
+      "body": "text-base leading-relaxed",
+      "labels": "text-xs font-bold uppercase tracking-[0.2em] text-zinc-400"
+    }
+  },
+  "colors": {
+    "backgrounds": {
+      "page": "bg-[#09090B]",
+      "card": "bg-[#18181B]",
+      "glass": "bg-black/60 backdrop-blur-xl"
+    },
+    "text": {
+      "primary": "text-white",
+      "secondary": "text-zinc-400",
+      "inverse": "text-black"
+    },
+    "borders": {
+      "subtle": "border-zinc-800",
+      "focus": "border-blue-500"
+    },
+    "semantic": {
+      "safe": "text-emerald-500 bg-emerald-500/10 border-emerald-500/20",
+      "moderate": "text-amber-500 bg-amber-500/10 border-amber-500/20",
+      "ambitious": "text-red-500 bg-red-500/10 border-red-500/20",
+      "ai_accent": "text-blue-500 bg-blue-500/10 border-blue-500/20"
+    }
+  },
+  "layout_and_spacing": {
+    "dashboard_grid": "Bento Grid (Control Room style). Dense, data-heavy, col-span-1 to col-span-3 variables. Tight gaps (gap-4 or gap-6).",
+    "surface_strategy": "Grid Borders - Use border-collapse style layouts for tables and data arrays. Dashboard cards have flat backgrounds, 1px subtle borders, no soft shadows.",
+    "spacing_scale": "Use generative spacing (p-6 or p-8 inside cards). Never allow text to touch borders."
+  },
+  "components": {
+    "student_profile_form": {
+      "style": "Minimalist stepper. Use a thin, high-contrast progress bar (Blue-500). Inputs should have flat bg (zinc-900) and sharp 1px borders (zinc-800) with solid Blue-500 focus rings.",
+      "shadcn_overrides": "Remove soft rounded corners, enforce max 8px (rounded-md) or flat (rounded-none).",
+      "data_testid": "student-profile-form"
+    },
+    "college_cards": {
+      "style": "Bento-style items. Use the 'Semantic' color block on the left edge or top to indicate Safe/Mod/Amb. Strong data hierarchy inside.",
+      "data_testid": "college-card"
+    },
+    "charts": {
+      "library": "Recharts",
+      "probability_bar": "Horizontal bar charts with sharp edges. Colors map to safe (emerald), moderate (amber), ambitious (red).",
+      "historical_trend": "Line charts. Use monotone curve type. No background grid lines for a cleaner Swiss look.",
+      "budget_scatter": "Scatter plot with subtle opacity points. Use blue-400 for neutral plots, color-code if mapped to colleges.",
+      "data_testid": "dashboard-chart"
+    },
+    "comparison_table": {
+      "style": "Technical look. Visible grid skeleton with border-r and border-b on cells. Use small uppercase labels for headers.",
+      "data_testid": "comparison-table"
+    },
+    "chat_widget": {
+      "style": "Floating panel. Glassmorphism surface (bg-black/60 backdrop-blur-xl border-zinc-800/50). AI messages use subtle blue tint.",
+      "data_testid": "ai-chat-widget"
+    },
+    "wishlist_toggle": {
+      "style": "Sharp interactive icon. Hover state text must be explicit.",
+      "data_testid": "wishlist-toggle"
+    },
+    "badges": {
+      "style": "Sharp corners or max rounded-md. High contrast text on 10% opacity backgrounds.",
+      "data_testid": "status-badge"
+    }
+  },
+  "media": {
+    "ai_data_mesh_bg": {
+      "url": "https://static.prod-images.emergentagent.com/jobs/1b34e23c-ab3c-4c95-999e-ca2ac6f6774b/images/a7c7e458bbf7a60d47ec983bfa5a3b2d2cc6e1e8d9d4f9d2f8b7f956354b177c.png",
+      "usage": "Use as a full-bleed, low-opacity (opacity-20 or mask-image) background behind the Student Profile Form or Hero/Welcome section to emphasize the 'AI-powered' nature."
+    },
+    "university_campus": {
+      "url": "https://images.unsplash.com/photo-1583373834259-46cc92173cb7?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzh8MHwxfHNlYXJjaHwyfHx1bml2ZXJzaXR5JTIwY2FtcHVzfGVufDB8fHx8MTc3NjQzNzYzOHww&ixlib=rb-4.1.0&q=85",
+      "usage": "Use as a header image or placeholder thumbnail for specific College Cards if images are required."
+    },
+    "student_studying": {
+      "url": "https://images.unsplash.com/photo-1588865876768-f9e265a1d38f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA2ODl8MHwxfHNlYXJjaHwxfHxzdHVkZW50JTIwc3R1ZHlpbmclMjBsYXB0b3AlMjBkYXJrfGVufDB8fHx8MTc3NjQzNzYyNnww&ixlib=rb-4.1.0&q=85",
+      "usage": "Can be used in the onboarding screen or login side-panel."
+    }
+  },
+  "icons": {
+    "library": "lucide-react",
+    "style": "Use clear, unsentimental icons with consistent stroke widths (typically 1.5px or 2px). Avoid filled icons in the dark theme to preserve negative space."
+  },
+  "motion": {
+    "interactions": "Crisp and immediate. 0.2s ease on hovers. No bouncy or playful animations.",
+    "page_transitions": "Minimal fade-in for data loads. Staggered list entrance for the College Comparison Tool and dashboard cards."
+  },
+  "instructions_to_main_agent": [
+    "Strictly adhere to the dark theme using Tailwind's zinc color palette as the foundation.",
+    "Implement the 'Grid Borders' look: many elements should have border-zinc-800 to create a technical, data-driven feel.",
+    "Use Recharts for all graphs (scatter, bar, line) and style them with the semantic colors (Emerald/Amber/Red/Blue) while removing default grid lines for a cleaner look.",
+    "Do NOT use pure #000000; stick to #09090B (zinc-950) for the darkest backgrounds.",
+    "Ensure every interactive element (button, link, form input, chart container) has a semantic data-testid attribute in kebab-case.",
+    "Install and use 'Outfit' and 'IBM Plex Sans' from Google Fonts or equivalent.",
+    "Ensure the dashboard handles responsive modes properly, prioritizing dense data on desktop."
+  ]
+}
