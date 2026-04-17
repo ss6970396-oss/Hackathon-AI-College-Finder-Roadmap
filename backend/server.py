@@ -212,16 +212,24 @@ async def get_recommendations(request: RecommendationRequest):
     try:
         profile = request.profile
         
-        # Find matching colleges
+        # Find matching colleges - broad query first
         query = {
-            "total_fees": {"$lte": profile.max_budget * 4},
             "branches": {"$in": profile.preferred_branches}
         }
         
-        if profile.preferred_cities:
-            query["location"] = {"$in": profile.preferred_cities}
+        # Only apply budget filter if budget is set and reasonable
+        if profile.max_budget and profile.max_budget > 0:
+            query["total_fees"] = {"$lte": profile.max_budget}
         
-        colleges = list(colleges_collection.find(query).limit(20))
+        # Try with city filter first, fall back to all colleges if no results
+        if profile.preferred_cities and len(profile.preferred_cities) > 0:
+            city_query = {**query, "location": {"$in": profile.preferred_cities}}
+            colleges = list(colleges_collection.find(city_query).limit(30))
+            # If no results with city filter, search all colleges
+            if not colleges:
+                colleges = list(colleges_collection.find(query).limit(30))
+        else:
+            colleges = list(colleges_collection.find(query).limit(30))
         
         recommendations = []
         
@@ -253,12 +261,6 @@ async def get_recommendations(request: RecommendationRequest):
                 
                 closing_rank = category_cutoff['closing_rank'] if category_cutoff else 0
                 
-                # Generate AI insight
-                ai_insight = await generate_ai_insight(
-                    college['name'], branch, probability, 
-                    profile.rank, profile.category, closing_rank
-                )
-                
                 # Predict next year cutoff
                 prediction = predict_next_year_cutoff(branch_cutoffs, profile.category)
                 
@@ -278,13 +280,29 @@ async def get_recommendations(request: RecommendationRequest):
                     "probability": round(probability, 1),
                     "classification": classify_admission_chance(probability),
                     "last_year_closing": closing_rank,
-                    "ai_insight": ai_insight,
+                    "ai_insight": f"Based on your rank of {profile.rank} ({profile.category} category), you have a {probability:.1f}% chance at {college['name']} {branch}. Last year's closing rank was {closing_rank}.",
                     "predicted_cutoff": prediction,
                     "historical_trend": branch_cutoffs[-3:] if len(branch_cutoffs) >= 3 else branch_cutoffs
                 })
         
         # Sort by probability
         recommendations.sort(key=lambda x: x['probability'], reverse=True)
+        top_recs = recommendations[:15]
+        
+        # Generate AI insights asynchronously for top recommendations (limit to 5 for speed)
+        async def enrich_insight(rec):
+            try:
+                insight = await generate_ai_insight(
+                    rec['college_name'], rec['branch'], rec['probability'],
+                    profile.rank, profile.category, rec['last_year_closing']
+                )
+                rec['ai_insight'] = insight
+            except:
+                pass
+        
+        # Only generate AI insights for top 5 to keep response fast
+        tasks = [enrich_insight(rec) for rec in top_recs[:5]]
+        await asyncio.gather(*tasks)
         
         # Save profile
         profile_dict = profile.dict()
@@ -293,11 +311,11 @@ async def get_recommendations(request: RecommendationRequest):
         
         return {
             "success": True,
-            "recommendations": recommendations[:15],
+            "recommendations": top_recs,
             "summary": {
-                "safe": len([r for r in recommendations if r['classification'] == 'Safe']),
-                "moderate": len([r for r in recommendations if r['classification'] == 'Moderate']),
-                "ambitious": len([r for r in recommendations if r['classification'] == 'Ambitious'])
+                "safe": len([r for r in top_recs if r['classification'] == 'Safe']),
+                "moderate": len([r for r in top_recs if r['classification'] == 'Moderate']),
+                "ambitious": len([r for r in top_recs if r['classification'] == 'Ambitious'])
             }
         }
     
