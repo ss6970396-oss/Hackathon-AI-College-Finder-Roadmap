@@ -1,6 +1,6 @@
 # AI-Powered College Admission Intelligence Platform 
 
-A comprehensive, AI-powered platform that helps JEE/NEET students make informed college admission decisions through intelligent recommendations, probability analysis, and personalized insights.
+A comprehensive, AI-powered platform that helps JEE/NEET/EMACET students make informed college admission decisions through intelligent recommendations, probability analysis, and personalized insights.
 
 ## Features
 
@@ -142,19 +142,7 @@ The platform includes data for:
 5. **AI Chat** - Floating chat widget for queries
 6. **Branch Roadmap** - Career guidance modal
 
-## 🔧 API Endpoints
-
-- `GET /api/health` - Health check
-- `POST /api/recommendations` - Get personalized recommendations
-- `POST /api/compare` - Compare selected colleges
-- `POST /api/wishlist/add` - Add to wishlist
-- `POST /api/wishlist/remove` - Remove from wishlist
-- `GET /api/wishlist/{email}` - Get user wishlist
-- `POST /api/chat` - AI chat conversation
-- `GET /api/branch-roadmap/{branch}` - Get career roadmap
-- `GET /api/colleges/search` - Search and filter colleges
-
-## Hackathon Winning Features
+## Features
 
 1. **Real-time AI Insights** - Every recommendation comes with personalized AI analysis
 2. **Predictive Analytics** - ML-based cutoff predictions
